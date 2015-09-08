@@ -8,15 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 
-/**
- * Created by scroot on 08.09.2015.
- */
 public abstract class AbstractPageObject implements PageObject {
 
     @Autowired
     protected WebDriver driver;
 
-    @Value("base.url")
+    @Value("${base.url}")
     String url;
 
     @Autowired
@@ -43,5 +40,9 @@ public abstract class AbstractPageObject implements PageObject {
     @Override
     public <T extends PageObject> T goTo(Class<T> destination) {
         return (T) context.getBean(destination).open();
+    }
+
+    protected <T extends PageObject> T getPageObject(Class<T> destination) {
+        return context.getBean(destination);
     }
 }

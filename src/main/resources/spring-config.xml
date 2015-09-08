@@ -15,4 +15,10 @@
 
     <bean id="dashboard" class="pl.mloza.base.pages.Dashboard"/>
     <bean id="login" class="pl.mloza.base.pages.LoginPage"/>
+    <bean id="settings" class="pl.mloza.base.pages.SettingsPage"/>
+    <bean id="settingsLeads" class="pl.mloza.base.pages.SettingsLeadsPage"/>
+    <bean id="settingsLeadsStatuses" class="pl.mloza.base.pages.SettingsLeadsStatusesTab"/>
+    <bean id="leads" class="pl.mloza.base.pages.LeadsPage"/>
+    <bean id="leadDetails" class="pl.mloza.base.pages.LeadDetailsPage"/>
+    <bean id="addLead" class="pl.mloza.base.pages.AddLeadPage"/>
 </beans>

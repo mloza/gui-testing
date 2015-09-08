@@ -1,15 +1,20 @@
 package pl.mloza.base.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import pl.mloza.base.framework.AbstractPageObject;
-import pl.mloza.base.framework.PageObject;
 
 public class LoginPage extends AbstractPageObject {
 
     @Autowired
     Dashboard dashboard;
+
+    @Value("${base.username}")
+    String username;
+
+    @Value("${base.password}")
+    String password;
 
     @Override
     public LoginPage open() {
@@ -25,8 +30,8 @@ public class LoginPage extends AbstractPageObject {
     }
 
     public Dashboard login() {
-        driver.findElement(By.id("user_email")).sendKeys("michal@mloza.pl");
-        driver.findElement(By.id("user_password")).sendKeys("Vulture9");
+        driver.findElement(By.id("user_email")).sendKeys(username);
+        driver.findElement(By.id("user_password")).sendKeys(password);
         driver.findElement(By.tagName("button")).click();
 
         dashboard.waitForLoad();

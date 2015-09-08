@@ -14,7 +14,7 @@ public class Dashboard extends AbstractPageObject {
     WebDriver driver;
 
     @Override
-    public PageObject open() {
+    public Dashboard open() {
         getSite("");
         waitForLoad();
         return this;
@@ -26,5 +26,13 @@ public class Dashboard extends AbstractPageObject {
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("h1")));
         webDriverWait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.tagName("h1")), "Dashboard"));
         return this;
+    }
+
+    public LeadsPage goToLeads() {
+        return goTo(LeadsPage.class);
+    }
+
+    public SettingsPage goToSettings() {
+        return goTo(SettingsPage.class);
     }
 }
