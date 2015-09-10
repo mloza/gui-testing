@@ -8,9 +8,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/**
- * Created by scroot on 10.09.2015.
- */
 public class CustomErrorHandler extends DefaultResponseErrorHandler {
     public void handleError(ClientHttpResponse response) throws IOException {
         throw new RestClientException(new BufferedReader(new InputStreamReader(response.getBody())).readLine());
