@@ -1,4 +1,4 @@
-package com.mloza.gui;
+package com.mloza.base.gui;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -13,8 +13,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.openqa.selenium.lift.Matchers.text;
 
-@ContextConfiguration(locations = { "classpath:spring-config.xml" })
-public class AddNewLead_CheckStatus_ChangeStatusName_ValidateIfLeadStausIsUpdated extends AbstractTestNGSpringContextTests {
+@ContextConfiguration(locations = {"classpath:spring-config-gui.xml"})
+public class AddNewLead_CheckStatus_ChangeStatusName_ValidateIfLeadStatusIsUpdated extends AbstractTestNGSpringContextTests {
 
     private final String LEAD_LAST_NAME = "testingName";
     private final String NEW_STATUS = "Different status";
@@ -42,13 +42,16 @@ public class AddNewLead_CheckStatus_ChangeStatusName_ValidateIfLeadStausIsUpdate
     }
 
     @Test
-    public void test() throws Exception {
+    public void testStatusChange() throws Exception {
         LeadDetailsPage leadDetailsPage = dashboard
                 .open()
                 .goToLeads()
                 .goToAddLead()
                 .addLeadWithLastName(LEAD_LAST_NAME);
-        assertThat("New lead has status New", leadDetailsPage.getLeadStatusElement(), text(equalTo(OLD_STATUS)));
+
+        assertThat("New lead has different status than New",
+                leadDetailsPage.getLeadStatusElement(),
+                text(equalTo(OLD_STATUS)));
 
         SettingsLeadsStatusesTab settingsLeadsStatusesTab = dashboard
                 .goToSettings()
@@ -61,7 +64,7 @@ public class AddNewLead_CheckStatus_ChangeStatusName_ValidateIfLeadStausIsUpdate
                 .goToLeads()
                 .openLeadWithLastName(LEAD_LAST_NAME);
 
-        assertThat("Status name has been changed successfully",
+        assertThat("Status name didn't change",
                 leadDetailsPage.getLeadStatusElement(),
                 text(equalTo(NEW_STATUS)));
     }

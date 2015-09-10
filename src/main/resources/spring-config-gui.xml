@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="spring-common.xml"/>
+
+    <bean id="webdriver" class="org.openqa.selenium.firefox.FirefoxDriver" destroy-method="close" lazy-init="true"/>
+
+    <bean id="dashboard" class="pl.mloza.base.pages.Dashboard"/>
+    <bean id="login" class="pl.mloza.base.pages.LoginPage"/>
+    <bean id="settings" class="pl.mloza.base.pages.SettingsPage"/>
+    <bean id="settingsLeads" class="pl.mloza.base.pages.SettingsLeadsPage"/>
+    <bean id="settingsLeadsStatuses" class="pl.mloza.base.pages.SettingsLeadsStatusesTab"/>
+    <bean id="leads" class="pl.mloza.base.pages.LeadsPage"/>
+    <bean id="leadDetails" class="pl.mloza.base.pages.LeadDetailsPage"/>
+    <bean id="addLead" class="pl.mloza.base.pages.AddLeadPage"/>
+</beans>
